@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Signup Page</title>
+
+    <style media="screen">
+
+*:before,
+*:after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #ecf0f1;
+}
+.background{
+    width: 430px;
+    height: 520px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+}
+.background .shape{
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    border-radius: 50%;
+}
+
+form{
+    height: 690px;
+    width: 550px;
+    background-color: grey;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    padding: 50px 35px;
+}
+form *{
+    font-family: 'Poppins',sans-serif;
+    color: black;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+}
+form h3{
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;
+}
+
+label{
+    display: block;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 500;
+}
+input{
+    display: block;
+    height: 40px;
+    width: 100%;
+    background-color: #ecf0f1;
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+}
+::placeholder{
+    color: #949494;
+}
+button{
+    margin-top: 14px;
+    width: 100%;
+    background-color: #ffffff;
+    color: #080710;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.social{
+  margin-top: 30px;
+  display: flex;
+}
+.social div{
+  background: red;
+  width: 150px;
+  border-radius: 3px;
+  padding: 5px 10px 10px 5px;
+  background-color: rgba(255,255,255,0.27);
+  color: #eaf0fb;
+  text-align: center;
+}
+.social div:hover{
+  background-color: rgba(255,255,255,0.47);
+}
+.social .fb{
+  margin-left: 25px;
+}
+.social i{
+  margin-right: 4px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="background">
+      <div class="shape"></div>
+      <div class="shape"></div>
+    </div>
+    <form action="" method="post" onsubmit="return validateForm();">
+      {% csrf_token %}
+      <h3>Signup Here</h3>
+  
+      <label for="username">Username</label>
+      <input type="text" placeholder="Username" name="username" id="username">
+  
+      <label for="email">Email</label>
+      <input type="email" placeholder="Email or Phone" name="email" id="email">
+  
+      <label for="password1">Password</label>
+      <input type="password" placeholder="Password" id="password1" name="password1">
+  
+      <label for="password2">Confirm Password</label>
+      <input type="password" placeholder="Confirm Password" id="password2" name="password2">
+  
+      <button type="submit">Signup</button>
+      <p></p>
+      <a href="{% url 'login' %}" style="color: white;">Already have an account?</a>
+      {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-danger" role="alert">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    </form>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  
+    <script>
+      function validateForm() {
+        var username = document.getElementById("username").value;
+        var password1 = document.getElementById("password1").value;
+        var password2 = document.getElementById("password2").value;
+
+        if(username == "" || password1 == "" || password2 == "" || email == "") {
+          alert("Please fill all the fields.");
+          return false;
+        }
+
+        if (username.length < 4) {
+        alert("Username should be at least 4 characters long.");
+        return false;
+      }
+  
+        if (password1.length < 8) {
+          alert("Password should be at least 8 characters long.");
+          return false;
+        }
+  
+        if (!/[a-z]/.test(password1) || !/[A-Z]/.test(password1)) {
+          alert("Password should contain both uppercase and lowercase letters.");
+          return false;
+        }
+  
+        if (password1 !== password2) {
+          alert("Passwords do not match.");
+          return false;
+        }
+  
+        return true;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Base</title>
+    {%load static%}
+    <link rel="stylesheet" href="{% static 'Products/style.css' %}">
+  </head>
+<h1> Mobiles E-Store </h1>
+  <body>
+    <h1></h1>
+
+    <div class="container">
+      <a href="{% url 'logout' %}">
+        <button class="button type1">
+          Logout
+        </button>
+      </a>
+      <a href="home">
+        <button class="button type2">
+          Store
+        </button>
+      </a>
+      <a href="Cart">
+        <button class="button type3">
+          Cart
+        </button>
+      </a>
+    </div>
+
+  </body>
+
+</html>

@@ -1,0 +1,17 @@
+
+*,
+*::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
+body {
+  font-family: Mukta, sans-serif;
+  height: 40vh;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  color: #4f546c;
+  font-size: 1.5rem;
+  background-color: #e6e6e6; }

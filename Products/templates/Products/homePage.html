@@ -1,0 +1,67 @@
+{%extends 'Products/layout.html'%}
+{%load static%}
+
+{%block body%}
+<title>Store</title>
+
+<link rel="stylesheet" href="{% static 'Products/homePage.css'%}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Mukta:wght@300;400;600;700;800&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+    <div class="container my">
+      <link rel="stylesheet" href="{% static 'Products/styleH.css'%}">
+      <a href="{% url 'logout' %}">
+        <button class="button type1">
+          Logout
+        </button>
+      </a>
+      <a href="base">
+        <button class="button type2">
+          Home
+        </button>
+      </a>
+      <a href="Cart">
+        <button class="button type3">
+          Cart
+        </button>
+      </a>
+
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Product ID</th>
+          <th>Product Name</th>
+          <th>Name of Shop</th>
+          <th>shop contact </th>
+          <th class='status status-unpaid'>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in products %}
+        <tr>
+          <td>
+            <a href="{% url 'view' product.id%}">{{product.id}}</a>
+          </td>
+          <td>
+            {{product.pName}}
+          </td>
+          <td>
+            {{product.nameShop}}
+          </td>
+          <td>
+            {{product.shopContact}}
+          </td>
+          <td>
+            ${{product.pPrice}}
+          </td>
+        </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+    <br>
+    <a href="/add" class="btn btn-secondary">Add New Product</a>
+{%endblock body%}

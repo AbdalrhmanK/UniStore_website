@@ -1,0 +1,79 @@
+{%extends 'Products/layout.html'%} {%load static%} {%block body%}
+<title>View Product</title>
+
+<link rel="stylesheet" href="{% static 'Products/editPage.css'%}" />
+<link rel="preconnect" href="https://fonts.gstatic.com" />
+<link
+  href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Mukta:wght@300;400;600;700;800&family=Noto+Sans:wght@400;700&display=swap"
+  rel="stylesheet"
+/>
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+/>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<div class="container my">
+  <link rel="stylesheet" href="{% static 'Products/styleH.css'%}" />
+  <a href="{% url 'logout' %}">
+    <button class="button type1">Logout</button>
+  </a>
+  <a href="{% url 'home' %}">
+    <button class="button type2">Store</button>
+  </a>
+  <a href="{% url 'Cart' %}">
+    <button class="button type3">Cart</button>
+  </a>
+</div>
+<h1>Product details</h1>
+
+<ul style="list-style: none">
+  <div style="display: flex; padding: 10px">
+    <p style="font-weight: bold">Product name :</p>
+    <li>{{product.pName}}</li>
+  </div>
+  <div style="display: flex; padding: 10px">
+    <p style="font-weight: bold">Product Price :</p>
+    <li>${{product.pPrice}}</li>
+  </div>
+  <div style="display: flex; padding: 10px">
+    <p style="font-weight: bold">Shop Name :</p>
+    <li>{{product.nameShop}}</li>
+  </div>
+
+  <div style="display: flex; padding: 10px">
+    <p style="font-weight: bold">Shop Contact :</p>
+    <li>{{product.shopContact}}</li>
+  </div>
+  <div style="display: flex; padding: 10px">
+    <p style="font-weight: bold">Description Of The Product :</p>
+    <li>{{product.description}}</li>
+  </div>
+  <div style="display: flex; padding: 10px">
+    <p style="font-weight: bold">Email Of The Owner :</p>
+    <li>{{product.email}}</li>
+  </div>
+
+  <div class="text-center">
+    <button
+      class="btn btn-secondary"
+      onclick="window.location.href='{% url 'edit' product.id%}'">
+      Edit
+    </button>
+
+  </div>
+ <br>
+  <form action="{% url 'userAdd'  product.id %}" method="POST" class="text-center">
+    {%csrf_token%}
+   <button type="submit" class="btn btn-secondary">Add Product to Cart</button>
+<p></p>
+   {% if messages %}
+       {% for message in messages %}
+       <div class="alert alert-danger" role="alert">
+           {{ message }}
+       </div>
+       {% endfor %}
+   {% endif %}
+ </form>
+</ul>
+
+{%endblock body%}

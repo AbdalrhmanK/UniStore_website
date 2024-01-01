@@ -1,0 +1,82 @@
+{%extends 'Products/layout.html'%}
+{%load static%}
+
+{%block body%}
+<title>Update</title>
+
+<link rel="stylesheet" href="{% static 'Products/editPage.css'%}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <div class="container my">
+      <link rel="stylesheet" href="{% static 'Products/styleH.css'%}">
+      <a href="{% url 'logout' %}">
+        <button class="button type1">
+          Logout
+        </button>
+      </a>
+    <a href="{% url 'home' %}">
+      <button class="button type2">
+        Store
+      </button>
+    </a>
+      <a href="{% url 'Cart' %}">
+        <button class="button type3">
+          Cart
+        </button>
+      </a>
+
+    </div>
+<form action="{% url 'update' product.id %}" method="POST">
+    {% csrf_token %}
+    <div>
+        <br>
+        <h3>Update Details</h3>
+    </div>
+    <div>
+        <p>Product Name:</p>
+        <div>
+            <input type="text" name="pName" value="{{product.pName}}" />
+        </div>
+    </div>
+    <div>
+        <p>Product Price:</p>
+        <div>
+            <input type="text" name="pPrice" value="{{product.pPrice}}" />
+        </div>
+    </div>
+    <div>
+        <p>Shop Name</p>
+        <div>
+            <input type="text" name="nameShop" value="{{product.nameShop}}" />
+        </div>
+    </div>
+    <div>
+        <p>Shop Contact</p>
+        <div>
+            <input type="text" name="shopContact" value="{{product.shopContact}}" />
+        </div>
+    </div>
+    <div>
+        <p>Description Of The Product</p>
+        <div>
+            <input type="text" name="description" value="{{product.description}}" />
+        </div>
+    </div>
+
+    <div>
+        <p>Email Of The Owner</p>
+        <div>
+            <input type="email" name="email" value="{{product.email}}" />
+        </div>
+    </div>
+
+
+    <div>
+        <br>
+        <button type="submit" class="btn btn-secondary">Update</button>
+    </div>
+
+</form>
+
+{%endblock body%}

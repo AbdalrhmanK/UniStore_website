@@ -1,0 +1,62 @@
+{%extends 'Products/layout.html'%}
+{%load static%}
+
+
+{%block body%}
+
+<title>Add Products</title>
+
+<link rel="stylesheet" href="{% static 'Products/editPage.css'%}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Mukta:wght@300;400;600;700;800&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <div class="container my">
+      <link rel="stylesheet" href="{% static 'Products/styleH.css'%}">
+      <a href="{% url 'logout' %}">
+        <button class="button type1">
+          Logout
+        </button>
+      </a>
+      <a href="home">
+        <button class="button type2">
+          Store
+        </button>
+      </a>
+      <a href="Cart">
+        <button class="button type3">
+          Cart
+        </button>
+      </a>
+
+    </div>
+<form method="POST" action="{% url 'add' %}">
+    {% csrf_token %}
+    <div>
+        <br>
+        <p> <h3>Enter Details of Product</h3> <p>
+        <div>
+            <p>Product Name:</p>{{ form.pName }}
+        </div>
+        <div>
+            <p>Name of shop</p>{{ form.nameShop }}
+        </div>
+        <div>
+            <p>Shop contact:</p>{{ form.shopContact }}
+        </div>
+        <div>
+            <p>Product Amout</p>{{ form.pPrice }}
+        </div>
+        <div>
+            <p>Product Description</p>{{ form.description }}
+        </div>
+        <div>
+            <p>Email Of The Owner</p>{{ form.email }}
+        </div>
+        <div>
+          <br>
+            <button type="submit" class="btn btn-secondary">Submit</button>
+        </div>
+    </div>
+</form>
+{%endblock body%}
